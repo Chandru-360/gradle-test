@@ -10,17 +10,25 @@ public abstract class AbstractMongoDbDao {
     private Datastore datastore;
 
     public void start() {
-        MongoClient mongoClient = new MongoClient("localhost", 27017);
+        // Initialize the MongoClient with the correct connection string
+        MongoClient mongoClient = new MongoClient("localhost", 27017);  // MongoDB should be running locally
         Morphia morphia = new Morphia();
         
-        // This line causes the error because databaseName is null
-        MongoDatabase database = mongoClient.getDatabase("testdb"); // <-- Error here
+        // Get the database with the name "testdb"
+        MongoDatabase database = mongoClient.getDatabase("testdb"); // This sets the db name as "testdb"
         
-        datastore = morphia.createDatastore(mongoClient, database.getName());
+        if (database == null) {
+            throw new RuntimeException("Failed to connect to MongoDB database 'testdb'");
+        }
+
+        // Create the Datastore for the connection
+        datastore = morphia.createDatastore(mongoClient, "testdb");  // Use "testdb" explicitly
+        
+        // Ensure indexes are created
         datastore.ensureIndexes();
     }
 
     public Datastore getDatastore() {
         return datastore;
     }
-} 
+}
