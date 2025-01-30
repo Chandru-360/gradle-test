@@ -1,1 +1,18 @@
- 
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.testng:testng:7.4.0' // TestNG for testing
+    implementation 'org.mongodb:mongo-java-driver:3.12.11' // MongoDB driver
+    implementation 'org.mongodb.morphia:morphia:1.3.2' // Morphia for MongoDB object mapping
+    implementation 'com.google.inject:guice:5.1.0' // Guice for dependency injection
+}
+
+test {
+    useTestNG() // Use TestNG for running tests
+} 
