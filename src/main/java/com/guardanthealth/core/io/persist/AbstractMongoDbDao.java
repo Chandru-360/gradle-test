@@ -14,7 +14,7 @@ public abstract class AbstractMongoDbDao {
         Morphia morphia = new Morphia();
         
         // This line causes the error because databaseName is null
-        MongoDatabase database = mongoClient.getDatabase(null); // <-- Error here
+        MongoDatabase database = mongoClient.getDatabase("testdb"); // <-- Error here
         
         datastore = morphia.createDatastore(mongoClient, database.getName());
         datastore.ensureIndexes();
