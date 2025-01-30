@@ -9,7 +9,7 @@ COPY build.gradle .
 COPY src ./src
 
 # Run the Gradle build
-RUN gradle build
+RUN gradle -v
 
 # Command to run tests (optional)
 CMD ["gradle", "test"] 
