@@ -9,21 +9,18 @@ public class ClinicalStudyReportServiceTest {
 
     private PersistService persistService;
 
-    @BeforeSuite
-    public void beforeSuite() {
-        // Create a mock PersistService
-        persistService = Mockito.mock(PersistService.class);
+   @BeforeSuite
+public void beforeSuite() {
+    // Create a mock PersistService
+    persistService = Mockito.mock(PersistService.class);
 
-        // Configure mock behavior (if needed)
-        Mockito.when(persistService.findById("123")).thenReturn("Mock entity");
-
-        // Check if persistService is initialized correctly
-        if (persistService == null) {
-            throw new RuntimeException("Initialization error: PersistService is null!");
-        }
-
-        System.out.println("PersistService initialized successfully.");
+    // Log the persistService object to verify it's initialized
+    if (persistService == null) {
+        throw new RuntimeException("Initialization error: PersistService is null!");
     }
+
+    System.out.println("PersistService initialized successfully: " + persistService);
+}
 
     @Test
     public void testSomething() {
