@@ -15,4 +15,7 @@ dependencies {
 
 test {
     useTestNG() // Use TestNG for running tests
-} 
+    testLogging {
+        events "passed", "failed", "skipped" // Add test result logging
+    }
+}
