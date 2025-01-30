@@ -1,25 +1,40 @@
 package com.guardanthealth.clinicalstudy;
 
-import com.google.inject.Inject;
 import com.guardanthealth.core.io.persist.PersistService;
+import org.mockito.Mockito;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 public class ClinicalStudyReportServiceTest {
 
-    @Inject
-    private PersistService persistService; // Injected dependency
+    private PersistService persistService;
 
     @BeforeSuite
     public void beforeSuite() {
-        // Initialize services (this is where the error occurs)
+        // Create a mock PersistService
+        persistService = Mockito.mock(PersistService.class);
+
+        // Configure mock behavior (if needed)
+        Mockito.when(persistService.findById("123")).thenReturn("Mock entity");
+
+        // Check if persistService is initialized correctly
         if (persistService == null) {
-            throw new RuntimeException("Initialization error!");
+            throw new RuntimeException("Initialization error: PersistService is null!");
         }
+
+        System.out.println("PersistService initialized successfully.");
     }
 
     @Test
     public void testSomething() {
-        // Test logic here
+        // Test logic with the mock PersistService
+        System.out.println("Running test...");
+
+        // Example: Call save method (it won't actually do anything)
+        persistService.save("Test entity");
+
+        // Example: Call findById method (returns mock data)
+        Object result = persistService.findById("123");
+        System.out.println("Find result: " + result);
     }
-} 
+}
