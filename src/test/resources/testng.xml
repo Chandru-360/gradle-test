@@ -1,1 +1,8 @@
- 
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ClinicalStudyTestSuite">
+    <test name="ClinicalStudyTests">
+        <classes>
+            <class name="com.guardanthealth.clinicalstudy.ClinicalStudyReportServiceTest"/>
+        </classes>
+    </test>
+</suite> 
